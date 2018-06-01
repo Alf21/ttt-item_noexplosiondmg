@@ -1,5 +1,8 @@
 if SERVER then
 	AddCSLuaFile()
+	
+	resource.AddFile("materials/vgui/ttt/icon_noexplosiondmg.vmt")
+	resource.AddFile("materials/vgui/ttt/perks/hud_noexplosiondmg.png")
 end
 
 EQUIP_NOEXPLOSIONDMG = (GenerateNewEquipmentID and GenerateNewEquipmentID()) or 16
@@ -9,7 +12,7 @@ local noexplosiondmg = {
 	loadout = false,
 	type = "item_passive",
 	material = "vgui/ttt/icon_noexplosiondmg",
-	name = "No Fall Damage",
+	name = "No Explosion Damage",
 	desc = "You don't get explosiondamage anymore!",
 	hud = true
 }
@@ -29,7 +32,7 @@ end
 
 if SERVER then
 	hook.Add("ScalePlayerDamage", "TTTNoExplosionDmg", function(ply, hitgroup, dmginfo)
-        if target:IsActive() and target:HasEquipmentItem(EQUIP_NOEXPLOSIONDMG) then
+        if ply:IsActive() and ply:HasEquipmentItem(EQUIP_NOEXPLOSIONDMG) then
             if dmginfo:IsExplosionDamage() then
 				dmginfo:ScaleDamage(0)
 			end
