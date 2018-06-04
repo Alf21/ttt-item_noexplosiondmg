@@ -12,7 +12,7 @@ local noexplosiondmg = {
 	loadout = false,
 	type = "item_passive",
 	material = "vgui/ttt/icon_noexplosiondmg",
-	name = "No Explosion Damage",
+	name = "NoExplosionDamage",
 	desc = "You don't get explosiondamage anymore!",
 	hud = true
 }
@@ -31,7 +31,7 @@ if traitorCanUse:GetBool() then
 end
 
 if SERVER then
-	hook.Add("ScalePlayerDamage", "TTTNoExplosionDmg", function(ply, hitgroup, dmginfo)
+	hook.Add("ScalePlayerDamage", "TTTNoExplosionDmg", function(ply, _, dmginfo)
         if ply:IsActive() and ply:HasEquipmentItem(EQUIP_NOEXPLOSIONDMG) then
             if dmginfo:IsExplosionDamage() then
 				dmginfo:ScaleDamage(0)
